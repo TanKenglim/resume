@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>陈境林 · 个人主页</title>
+<style>
+:root{
+  --bg:#fffdf9; --bg-soft:#fdf6ee; --card:#ffffff;
+  --text:#1f1a14; --muted:#7a6a58; --accent:#f97316; --accent2:#f59e0b;
+  --border:#f0e6d8; --shadow:0 4px 20px rgba(150,80,20,.06);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",Roboto,sans-serif;color:var(--text);background:var(--bg);line-height:1.7}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1080px;margin:0 auto;padding:0 22px;height:60px}
+.logo{font-weight:700;font-size:18px;color:var(--accent);letter-spacing:.5px}
+.nav-links{display:flex;gap:6px}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:14.5px;padding:7px 13px;border-radius:8px;transition:.2s}
+.nav-links a:hover,.nav-links a.active{color:var(--accent);background:rgba(249,115,22,.08)}
+.nav-toggle{display:none;background:none;border:none;font-size:26px;color:var(--text);cursor:pointer;line-height:1}
+
+/* hero */
+.hero{background:linear-gradient(135deg,#f97316 0%,#fbbf24 100%);color:#fff;padding:70px 0 60px;text-align:center}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;margin-bottom:12px}
+.hero .sub{font-size:18px;opacity:.95;margin-bottom:8px}
+.hero .tag{display:inline-block;margin-top:16px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);padding:7px 18px;border-radius:30px;font-size:14px}
+.hero .contact{margin-top:22px;font-size:14px;opacity:.92}
+.hero .contact a{color:#fff;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.6);margin:0 8px}
+
+/* sections */
+section{padding:58px 0}
+section.alt{background:var(--bg-soft)}
+.section-title{font-size:27px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.section-title::before{content:"";width:5px;height:26px;background:var(--accent);border-radius:3px}
+.section-sub{color:var(--muted);margin-bottom:34px;font-size:15px}
+
+/* cards */
+.grid{display:grid;gap:20px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;box-shadow:var(--shadow);transition:.25s}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(150,80,20,.12)}
+.card.wide{grid-column:1 / -1}
+.card h3{font-size:17px;font-weight:700;margin-bottom:6px}
+.card .meta{color:var(--muted);font-size:13.5px;margin-bottom:12px}
+.card .desc{font-size:14.5px;color:#333}
+.card ul{margin:10px 0 0 18px;font-size:14px;color:#333}
+.card ul li{margin-bottom:5px}
+.pill{display:inline-block;background:rgba(249,115,22,.1);color:var(--accent);font-size:12px;padding:3px 10px;border-radius:20px;margin:0 6px 6px 0}
+.badge{display:inline-block;background:rgba(245,158,11,.12);color:#b45309;font-size:12px;padding:3px 10px;border-radius:20px;margin-right:6px}
+.stat{display:flex;align-items:center;gap:16px}
+.stat .num{font-size:30px;font-weight:800;color:var(--accent);line-height:1}
+.stat .lbl{font-size:13px;color:var(--muted)}
+
+/* edu timeline */
+.tl{position:relative;padding-left:26px}
+.tl::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--border)}
+.tl-item{position:relative;margin-bottom:24px}
+.tl-item::before{content:"";position:absolute;left:-24px;top:8px;width:12px;height:12px;background:var(--accent);border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px var(--border)}
+.tl-item h4{font-size:16px;font-weight:700}
+.tl-item .meta{color:var(--muted);font-size:13px;margin:3px 0 6px}
+.tl-item p{font-size:14px;color:#333}
+
+/* skills */
+.skill-tags{display:flex;flex-wrap:wrap;gap:10px}
+.skill-tags span{background:var(--bg-soft);border:1px solid var(--border);border-radius:10px;padding:9px 16px;font-size:14px}
+.skill-tags span b{color:var(--accent)}
+
+footer{background:#2b1a0f;color:#b3947a;text-align:center;padding:28px 0;font-size:13px}
+footer a{color:#f5e6d8}
+
+/* responsive */
+@media(max-width:860px){
+  .g2,.g3{grid-template-columns:1fr}
+  .hero h1{font-size:32px}
+  .hero{padding:52px 0 46px}
+  .nav-toggle{display:block}
+  .nav-links{position:absolute;top:60px;left:0;right:0;background:#fff;flex-direction:column;padding:12px 20px;border-bottom:1px solid var(--border);display:none}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:11px 10px}
+}
+@media(max-width:480px){
+  .hero h1{font-size:26px}
+  .section-title{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">陈境林</div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#home" class="active" onclick="closeNav()">首页</a>
+      <a href="#education" onclick="closeNav()">教育背景</a>
+      <a href="#projects" onclick="closeNav()">项目经历</a>
+      <a href="#experience" onclick="closeNav()">实习经历</a>
+      <a href="#skills" onclick="closeNav()">技能认证</a>
+      <a href="#honors" onclick="closeNav()">荣誉</a>
+    </div>
+  </div>
+</nav>
+
+<!-- 首页 -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <h1>陈境林</h1>
+    <div class="sub">中央民族大学 · 语言学及应用语言学 硕士在读</div>
+    <div class="tag">语言学 × AI 交叉方向 ｜ 语言变异与演变 ｜ 地理语言学 ｜ 语言资源与语料库</div>
+    <div class="contact">
+      <a href="https://github.com/TanKenglim" target="_blank">GitHub</a>
+      <a href="https://tankenglim.github.io/resume/" target="_blank">个人主页</a>
+    </div>
+  </div>
+</section>
+
+<!-- 教育背景 -->
+<section id="education">
+  <div class="wrap">
+    <h2 class="section-title">教育背景</h2>
+    <div class="section-sub">专业第一保研 · 本硕贯通 · 多元交换经历</div>
+    <div class="tl">
+      <div class="tl-item">
+        <h4>中央民族大学 · 语言学及应用语言学（硕士在读）</h4>
+        <div class="meta">2024.09 – 至今 ｜ 中国少数民族语言文学学院 ｜ 学业二等奖学金(2024)、三等奖学金(2025)</div>
+        <p>硕士课程：语音学基础(96)、开源大数据分析与应用(97)、语言学理论经典导读(95)、社会语言学(91)、实验语音学(88)等</p>
+      </div>
+      <div class="tl-item">
+        <h4>汕头大学 · 汉语言文学（全球研究与境外实践创新班）（本科）</h4>
+        <div class="meta">2020.10 – 2024.07 ｜ 文学院 ｜ 专业第一（1/117）｜ 国家奖学金(2023)｜ 优秀本科毕业生 ｜ 公费生</div>
+        <p>本科课程：汉语方言学(98)、现代汉语(93)、语言学理论与方法(92)、中国民间信仰与地方文化研究(100)、比较文学(97)</p>
+      </div>
+      <div class="tl-item">
+        <h4>上海交通大学 · 语言科技工作坊国际暑期学校</h4>
+        <div class="meta">2025.06 – 2025.07 ｜ 结业证书</div>
+        <p>Praat 语音分析及研究实例、大语言模型及其应用、语料库及文本统计基础、结构方程模型、VOSviewer 文献计量可视化、脑电仪应用、眼动仪数据采集、Experiment Builder 程序编写、濒危藏缅语言自动语音识别</p>
+      </div>
+      <div class="tl-item">
+        <h4>香港中文大学 · 内地高校暑期学院 visiting student</h4>
+        <div class="meta">2023.07 – 2023.08 ｜ 课程：阅读人文 ｜ 成绩：A-</div>
+        <p>内地高校暑期学院交流项目，修读人文阅读课程，获结业证书。</p>
+      </div>
+      <div class="tl-item">
+        <h4>杭州电子科技大学 · 交换生</h4>
+        <div class="meta">2021.09 – 2022.01 ｜ 人文艺术与数字媒体学院 ｜ 汉语国际教育</div>
+        <p>古代汉语(94)、应用语言学(94)、汉字学(99)，跨校交换学习，拓展语言学与数字媒体交叉视野。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 项目经历 -->
+<section class="alt" id="projects">
+  <div class="wrap">
+    <h2 class="section-title">项目经历</h2>
+    <div class="section-sub">核心项目与关键量化数据</div>
+    <div class="grid g2">
+      <div class="card wide">
+        <h3>阿里多方言评测项目</h3>
+        <div class="meta">阿里DT团队 ｜ 核心方言负责人（闽语/汕头）｜ 2025.09 – 2026.04</div>
+        <div class="stat" style="margin-bottom:12px">
+          <div><div class="num">10+</div><div class="lbl">小时语音</div></div>
+          <div><div class="num">120+</div><div class="lbl">条特征词</div></div>
+          <div><div class="num">3000+</div><div class="lbl">行标注</div></div>
+        </div>
+        <p class="desc">语言学 × AI 跨界项目，参与构建方言模型评测体系，运用 AI 辅助编程构建转写脚本，减少重复劳动与转写遗漏。</p>
+      </div>
+      <div class="card">
+        <h3>香港RGC五省及东南亚闽方言调查</h3>
+        <div class="meta">香港政府研究资助局(RGC) ｜ 田野调查员 ｜ 2024.07</div>
+        <div class="stat" style="margin-bottom:12px">
+          <div><div class="num">2430</div><div class="lbl">条方言词汇</div></div>
+        </div>
+        <p class="desc">系统整理潮阳闽方言 2430 条词汇，灵活运用翻译法、指认法、描述法等传统方言学田野调查方法，构建一手方言词汇语料。</p>
+      </div>
+      <div class="card">
+        <h3>汕头小公园语言景观调查研究</h3>
+        <div class="meta">汕头大学文学院 ｜ 项目负责人 ｜ 2023.05 – 2024.02</div>
+        <div class="stat" style="margin-bottom:12px">
+          <div><div class="num">6</div><div class="lbl">人团队</div></div>
+          <div><div class="num">800+</div><div class="lbl">有效数据</div></div>
+          <div><div class="num">8000</div><div class="lbl">字报告</div></div>
+        </div>
+        <p class="desc">主持项目整体规划，带领团队完成田野走访与数据采录，运用 OCR 技术辅助数据分析，成功结项。</p>
+      </div>
+      <div class="card">
+        <h3>潮阳闽语语音变异研究</h3>
+        <div class="meta">本科毕业论文 · 硕士会议论文 ｜ 负责人 ｜ 2023.05 – 2024.02</div>
+        <div class="stat" style="margin-bottom:12px">
+          <div><div class="num">85</div><div class="lbl">位母语者</div></div>
+          <div><div class="num">3315</div><div class="lbl">条样本</div></div>
+          <div><div class="num">76.6%</div><div class="lbl">有效率</div></div>
+        </div>
+        <p class="desc">实地调查 85 位母语者，量化统计建模分析语音变异社会分布规律；论文在第17届闽方言学术研讨会宣读，获优秀毕业论文。</p>
+      </div>
+      <div class="card">
+        <h3>国家社科基金重大项目 · 声学数据库</h3>
+        <div class="meta">国家社科基金（19ZDA300）｜ 项目成员 ｜ 2023 – 至今</div>
+        <p class="desc">参与语音数据采集、标注与声学分析，处理千万级语音数据；建立标注规则与验收机制，构建结构化语音数据库。</p>
+      </div>
+      <div class="card">
+        <h3>国家社科基金重点项目 · 南亚语系语言地图集</h3>
+        <div class="meta">国家社科基金（23AYY017）｜ 项目成员 ｜ 2023 – 至今</div>
+        <p class="desc">参与南亚语系语言田野调查与资料收集，协助语言地图集的 GIS Mapping 数据整理与项目报告撰写。</p>
+      </div>
+      <div class="card">
+        <h3>香港理工大学 · 音乐干预失语症研究</h3>
+        <div class="meta">香港理工大学（HSEARS20230509004）｜ 研究助理 ｜ 2024.06 – 2024.08</div>
+        <p class="desc">参与多语言语音信息处理研究，与国际团队合作，积累跨语言语音分析与建模经验。</p>
+      </div>
+      <div class="card">
+        <h3>中国侨联课题 · 二十四节令鼓文化回馈研究</h3>
+        <div class="meta">中国侨联（19BZQK204）｜ 项目成员</div>
+        <p class="desc">参与海外华人文化回馈中国研究，以"二十四节令鼓"为案例，探索海外文化传播与本土回馈机制。</p>
+      </div>
+      <div class="card">
+        <h3>其他项目经历</h3>
+        <div class="meta">中央民族大学 · 汕头大学 ｜ 项目成员 / 负责人</div>
+        <p class="desc">LLM 文本数据分析研究 ｜ 数智化背景下语言地理信息采集方法研究 ｜ 中国语言资源保护工程（中山闽语）｜ 语言文字信息处理课程智能体 ｜ 广西武鸣数智化语言教育实践 ｜ 小米集团社会实践</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 实习经历 -->
+<section id="experience">
+  <div class="wrap">
+    <h2 class="section-title">实习经历</h2>
+    <div class="section-sub">行政事务 · 文档管理 · 团队协调 · 教学辅助</div>
+    <div class="grid g3">
+      <div class="card">
+        <h3>潮阳区档案馆 · 办公室助理</h3>
+        <div class="meta">2024.01 – 2024.02</div>
+        <p class="desc">负责档案分类、整理与数字化，协助公文处理与文件用印管理，保证文书流转规范有序。</p>
+      </div>
+      <div class="card">
+        <h3>汕大教务处互助学习中心 · 学业导生→职员</h3>
+        <div class="meta">2021.09 – 2024.07</div>
+        <p class="desc">职员期负责导生排班、考核与流程制定，组织培训；服务数百名学生，两次获评"优秀课程导生"。</p>
+      </div>
+      <div class="card">
+        <h3>汕大思源书院 · 导生 / 三楼理事长</h3>
+        <div class="meta">2022.09 – 2024.07</div>
+        <p class="desc">管理7个楼层公共空间，起草《自习室管理条例》等20+份制度规范，服务300+书院成员。</p>
+      </div>
+      <div class="card">
+        <h3>中央民族大学 · 信息工程学院助教（人工智能素养）</h3>
+        <div class="meta">2024.09 – 至今</div>
+        <p class="desc">协助讲授、答疑，批改作业与实验报告，指导学生使用 AI 工具学习实践。</p>
+      </div>
+      <div class="card">
+        <h3>中央民族大学 · 中国少数民族语言文学学院助教</h3>
+        <div class="meta">2024.09 – 至今</div>
+        <p class="desc">协助语言学课程教学，批改作业论文、课后答疑。</p>
+      </div>
+      <div class="card">
+        <h3>小米集团春季社会实践 · 成员</h3>
+        <div class="meta">2026</div>
+        <p class="desc">参访调研民族语言文化与数字科技融合实践。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 技能认证 -->
+<section class="alt" id="skills">
+  <div class="wrap">
+    <h2 class="section-title">技能与认证</h2>
+    <div class="section-sub">AI 应用能力 · 数据分析 · 语言能力 · 学术身份</div>
+    <div style="display:grid;gap:20px">
+      <div class="card">
+        <h3>AI 与大模型认证</h3>
+        <div class="skill-tags" style="margin-top:10px">
+          <span><b>科大讯飞</b> Prompt工程师</span>
+          <span><b>科大讯飞</b> 微调工程师</span>
+          <span><b>阿里云</b> Apsara Clouder（AI Coding）</span>
+          <span><b>NCRE</b> 一级 人工智能与大模型基础</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>工具与语言</h3>
+        <div class="skill-tags" style="margin-top:10px">
+          <span>Python</span><span>Praat 语音分析</span><span>SPSS</span><span>OCR</span>
+          <span>普通话二级甲等</span><span>英语 CET-6</span><span>潮汕话（母语）</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>学术身份</h3>
+        <div class="skill-tags" style="margin-top:10px">
+          <span><b>中国人工智能学会（CAAI）</b> 多语种智能信息处理专委会 学生会员</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 荣誉 -->
+<section id="honors">
+  <div class="wrap">
+    <h2 class="section-title">荣誉与获奖</h2>
+    <div class="section-sub">国家级 · 省级 · 校级 多层次认可</div>
+    <div class="grid g2">
+      <div class="card">
+        <h3>国家级</h3>
+        <ul>
+          <li>国家奖学金（2023.12）</li>
+          <li>全国大学生语言文字大赛 初赛/决赛二等奖（专业组）</li>
+          <li>粤港澳高校汉语言教育联盟学生论文比赛 三等奖</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>校级与院级</h3>
+        <ul>
+          <li>中央民族大学 学业二等奖学金(2024)、三等奖学金(2025)</li>
+          <li>汕头大学 嘉奖状（2023年度成绩突出）</li>
+          <li>汕头大学 综合奖一等奖学金</li>
+          <li>优秀课程导生 ×2 ｜ 优秀本科毕业生 ｜ 优秀学生骨干</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 陈境林 · 语言学 × AI 交叉方向 · <a href="https://github.com/TanKenglim" target="_blank">GitHub</a> · <a href="https://tankenglim.github.io/resume/" target="_blank">个人主页</a></p>
+  </div>
+</footer>
+
+<script>
+function toggleNav(){document.getElementById('navLinks').classList.toggle('open')}
+function closeNav(){document.getElementById('navLinks').classList.remove('open')}
+// scroll spy
+window.addEventListener('scroll',()=>{
+  const sections=document.querySelectorAll('section');
+  const links=document.querySelectorAll('.nav-links a');
+  let cur='home';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-90)cur=s.id});
+  links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+cur));
+});
+</script>
+</body>
+</html>
